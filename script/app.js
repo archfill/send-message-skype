@@ -25,17 +25,6 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
-var dialog = new builder.CommandDialog();
-
-dialog.matches(['hello', 'Hello'], function (session) {
-    session.send('こんちわ');
+bot.dialog('/', function (session) {
+    session.send('Hello World');
 });
-dialog.onDefault(function (session) {
-    session.send('???');
-});
-
-bot.add('/', dialog);
-
-// bot.dialog('/', function (session) {
-//     session.send('Hello World');
-// });

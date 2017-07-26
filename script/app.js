@@ -25,6 +25,30 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
-bot.dialog('/', function (session) {
-    session.send('Hello World');
+var intents = new builder.IntentDialog();
+bot.dialog('/', intents);
+
+//複数の条件を指定する場合はmatchesAnyに配列で渡す
+//正規表現で .*hoge.* は「hogeが入っているなら」にマッチする
+// 「/  /i」  正規表現のiフラグは大文字小文字を区別しないようにできる
+// http://kyu-mu.net/coffeescript/regexp/
+intents.matchesAny([/.*hi.*/i,/.*hello.*/i,/.*こんにちは.*/i],function(session){
+  session.send('こんにちは');
 });
+
+// 1つの条件でいい場合はmatches
+// 複数チェインすることも可能
+intents.matches(/.*しよ.*/i,function(session){
+  session.send('いいよ');
+}).matches(/.*して？.*/i,function(session){
+  session.send('やだよぉ');
+});
+
+// どの条件にもマッチしない場合はonDefault
+intents.onDefault(function(session){
+  session.send("＊＊＊しよう");
+});
+
+// bot.dialog('/', function (session) {
+//     session.send('Hello World');
+// });

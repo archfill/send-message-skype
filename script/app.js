@@ -29,7 +29,10 @@ var dialog = new builder.CommandDialog();
 
 dialog.matches(['hello', 'Hello'], function (session) {
     session.send('こんちわ');
-})
+});
+dialog.onDefault(function (session) {
+    session.send('???');
+});
 
 bot.add('/', dialog);
 

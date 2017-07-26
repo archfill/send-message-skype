@@ -22,7 +22,7 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 var apiServer = restify.createServer();
-apiServer.listen(80, function () {
+apiServer.listen(8088, function () {
     console.log('%s listening to %s', apiServer.name, apiServer.url);
 });
 function messageRespond(req, res, next) {

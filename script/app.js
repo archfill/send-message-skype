@@ -21,6 +21,16 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
+var apiServer = restify.createServer();
+apiServer.listen(80, function () {
+    console.log('%s listening to %s', apiServer.name, apiServer.url);
+});
+function messageRespond(req, res, next) {
+    res.send('hey!');
+};
+apiServer.post('/api/messageres', messageRespond);
+
+
 //=========================================================
 // Bots Dialogs
 //=========================================================

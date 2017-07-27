@@ -21,14 +21,10 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-var apiServer = restify.createServer();
-apiServer.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log('%s listening to %s', apiServer.name, apiServer.url);
-});
 function messageRespond(req, res, next) {
     res.send('hey!');
 };
-apiServer.post('/api/messageres', messageRespond);
+server.post('/api/message_response', messageRespond);
 
 
 //=========================================================

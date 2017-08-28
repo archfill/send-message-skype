@@ -12,7 +12,7 @@ function sendMessageSkype(req, res, next) {
 
   // MicrosoftBotFrameworkのOAuthClient認証を行いaccess_tokenを取得する
 
-  var headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+  var headers = "Content-Type : application/x-www-form-urlencoded";
   var access_token;
   var response = request(
     'POST',

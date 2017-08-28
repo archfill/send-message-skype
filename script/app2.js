@@ -31,6 +31,7 @@ function sendMessageSkype(req, res, next) {
   console.log(" body");
   dump(JSON.parse(response.getBody('utf8')));
 
+  res.send('hey!');
   return
 
   request(options, function (error, response, body) {

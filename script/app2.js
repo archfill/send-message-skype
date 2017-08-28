@@ -78,14 +78,14 @@ function auth(){
 
 function sendMessageSkype(req, res, next) {
   auth();
-  // res.send('hey!');
-  request(options, function (error, response, body) {
-    if (body) {
-      console.log(body);
-    }
-    if (error) {
-      console.log(error);
-    }
-  });
+  res.send('hey!');
+  // request(options, function (error, response, body) {
+  //   if (body) {
+  //     console.log(body);
+  //   }
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // });
 };
 server.post('/api/send_message_skype', sendMessageSkype);

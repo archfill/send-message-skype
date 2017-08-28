@@ -21,10 +21,14 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-function messageRespond(req, res, next) {
+// function messageRespond(req, res, next) {
+//     res.send('hey!');
+// };
+
+function sendMessageSkype(req, res, next) {
     res.send('hey!');
 };
-server.post('/api/message_response', messageRespond);
+server.post('/api/send_message_skype', sendMessageSkype);
 
 
 //=========================================================

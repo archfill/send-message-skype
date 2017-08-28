@@ -39,6 +39,7 @@ function auth(){
 
 function sendMessageSkype(req, res, next) {
   var access_token = auth();
+  console.log('access_token:' + access_token);
 
   var target_chat = '19:26aa87fcb80f43728abdfd129f3e43c2@thread.skype';
   var url = 'https://api.skype.net/v3/conversations/' + target_chat + '/activities/';

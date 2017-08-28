@@ -8,7 +8,8 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
   console.log('%s listening to %s', server.name, server.url);
 });
 
-function auth(){
+function sendMessageSkype(req, res, next) {
+
   // MicrosoftBotFrameworkのOAuthClient認証を行いaccess_tokenを取得する
 
   var headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -24,21 +25,19 @@ function auth(){
     }
   };
 
+  var access_token = auth();
   request(options, function (error, response, body) {
     if (body) {
       console.log('succes!');
       console.log(JSON.parse(body)['access_token']);
-      return JSON.parse(body)['access_token'];
+      access_token = JSON.parse(body)['access_token'];
     };
     if (error) {
       console.log('error!');
       console.log(error);
     };
   });
-};
 
-function sendMessageSkype(req, res, next) {
-  var access_token = auth();
   console.log('access_token:' + access_token);
 
   var target_chat = '19:26aa87fcb80f43728abdfd129f3e43c2@thread.skype';

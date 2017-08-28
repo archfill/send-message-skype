@@ -25,7 +25,7 @@ function sendMessageSkype(req, res, next) {
     }
   };
 
-  var access_token = auth();
+  var access_token;
   request(options, function (error, response, body) {
     if (body) {
       console.log('succes!');

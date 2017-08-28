@@ -3,9 +3,6 @@
 var restify = require('restify');
 var request = require('request');
 
-var date = new Date();
-var dateString = date.toFormat("YYYY-MM-DD HH24:MI:SS");
-
 var url = 'https://fcm.googleapis.com/fcm/send';
 var serverkey = 'AIzaSyZ-1u...0GBYzPu7Udno5aA';
 var token = 'bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...';
@@ -13,7 +10,7 @@ var token = 'bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...';
 // data payload
 var data = {
   message: 'Hello!',
-  date: dateString
+  date: 'date'
 };
 
 // HTTP header

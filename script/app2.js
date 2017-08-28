@@ -20,10 +20,10 @@ function sendMessageSkype(req, res, next) {
     {
       headers: headers,
       body: {
-        'grant_type': 'client_credentials',
-        'client_id': '31df04c5-00e6-4e1e-98a0-e04a7e292e9b',
-        'client_secret': 'YZzoCR9LwicAwSsqAfRjN0N',
-        'scope': 'https://graph.microsoft.com/.default'
+        'grant_type : client_credentials',
+        'client_id : 31df04c5-00e6-4e1e-98a0-e04a7e292e9b',
+        'client_secret : YZzoCR9LwicAwSsqAfRjN0N',
+        'scope : https://graph.microsoft.com/.default'
       }
     });
 

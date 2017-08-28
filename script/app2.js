@@ -27,9 +27,9 @@ function sendMessageSkype(req, res, next) {
       }
     });
 
-  dump(response);
+  console.log(response);
   console.log(" body");
-  dump(JSON.parse(response.getBody('utf8')));
+  console.log(JSON.parse(response.getBody('utf8')));
 
   res.send('hey!');
   return

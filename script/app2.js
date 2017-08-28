@@ -76,7 +76,7 @@ function sendMessageSkype(req, res, next) {
       console.log(error);
     };
     console.log(body);
-    cnosole.log(error);
+    console.log(error);
   });
 
   res.send('hey!');

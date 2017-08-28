@@ -54,7 +54,7 @@ function auth(){
   request(options, function (error, response, body) {
     if (body) {
       console.log('succes');
-      console.log(body['access_token']);
+      console.log(JSON.parse(body)['access_token']);
     }
     if (error) {
       console.log('error');

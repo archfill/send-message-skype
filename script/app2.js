@@ -3,33 +3,6 @@
 var restify = require('restify');
 var request = require('request');
 
-var url = 'https://fcm.googleapis.com/fcm/send';
-var serverkey = 'AIzaSyZ-1u...0GBYzPu7Udno5aA';
-var token = 'bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...';
-
-// data payload
-var data = {
-  message: 'Hello!',
-  date: 'date'
-};
-
-// HTTP header
-var headers = {
-  'Content-Type': 'application/json',
-  'Authorization': 'key=' + serverkey
-};
-
-// request options
-var options = {
-  url: url,
-  method: 'POST',
-  headers: headers,
-  json: {
-    'to': token,
-    'data': data
-  }
-};
-
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
   console.log('%s listening to %s', server.name, server.url);
@@ -53,38 +26,59 @@ function auth(){
 
   request(options, function (error, response, body) {
     if (body) {
-      console.log('succes');
+      console.log('succes!');
       console.log(JSON.parse(body)['access_token']);
-    }
+      return JSON.parse(body)['access_token'];
+    };
     if (error) {
-      console.log('error');
+      console.log('error!');
       console.log(error);
-    }
+    };
   });
-
-  //access_token_response = requests.post('https://login.microsoftonline.com/common/oauth2/v2.0/token', headers = headers, data = data)
-
-  // if (access_token_response.status_code != 200) {
-  //   console.log(access_token_response.headers);
-  //   console.log(access_token_response.text);
-  //   console.log('Skype OAuth Failed');
-  //   return
-  // };
-
-  //tokens = json.loads(access_token_response.text)
-  //return tokens['access_token']
 };
 
 function sendMessageSkype(req, res, next) {
-  auth();
+  var access_token = auth();
+
+  var target_chat = '19:26aa87fcb80f43728abdfd129f3e43c2@thread.skype';
+  var url = 'https://api.skype.net/v3/conversations/' + target_chat + '/activities/';
+
+  var message = 'test';
+
+  // MicrosoftBotFrameworkのチャット投稿用RESTAPIを叩く
+
+  var headers = {
+    'Authorization': 'Bearer ' + access_token,
+    'Content-Type': 'application/json'
+  };
+
+  var data = {
+    'type': 'message/text',
+    'text': message
+  };
+
+  var options = {
+    url: url,
+    method: 'POST',
+    headers: headers,
+    json: {
+      'data': data
+    }
+  };
+
+  request(options, function (error, response, body) {
+    if (body) {
+      console.log('succes!');
+      console.log(body);
+    };
+    if (error) {
+      console.log('error!');
+      console.log(error);
+    };
+  });
+
   res.send('hey!');
-  // request(options, function (error, response, body) {
-  //   if (body) {
-  //     console.log(body);
-  //   }
-  //   if (error) {
-  //     console.log(error);
-  //   }
-  // });
+
+  return
 };
 server.post('/api/send_message_skype', sendMessageSkype);

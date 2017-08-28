@@ -3,7 +3,6 @@
 var restify = require('restify');
 var request = require('request');
 
-require('date-utils');
 var date = new Date();
 var dateString = date.toFormat("YYYY-MM-DD HH24:MI:SS");
 

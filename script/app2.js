@@ -54,13 +54,12 @@ function auth(){
   request(options, function (error, response, body) {
     if (body) {
       console.log('succes');
-      console.log(body);
+      console.log(body['access_token']);
     }
     if (error) {
       console.log('error');
       console.log(error);
     }
-    console.log(response.body);
   });
 
   //access_token_response = requests.post('https://login.microsoftonline.com/common/oauth2/v2.0/token', headers = headers, data = data)

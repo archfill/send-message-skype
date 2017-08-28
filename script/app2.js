@@ -60,7 +60,7 @@ function auth(){
       console.log('error');
       console.log(error);
     }
-    console.log(response);
+    console.log(response.body);
   });
 
   //access_token_response = requests.post('https://login.microsoftonline.com/common/oauth2/v2.0/token', headers = headers, data = data)

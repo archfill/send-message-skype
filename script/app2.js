@@ -56,17 +56,16 @@ function auth(){
   };
 
   request(options, function (error, response, body) {
-      if (body) {
-        console.log('succes');
-        console.log(body);
-      }
-      if (error) {
-        console.log('error');
-        console.log(error);
-      }
-      console.log(response);
-    });
-  };
+    if (body) {
+      console.log('succes');
+      console.log(body);
+    }
+    if (error) {
+      console.log('error');
+      console.log(error);
+    }
+    console.log(response);
+  });
 
   //access_token_response = requests.post('https://login.microsoftonline.com/common/oauth2/v2.0/token', headers = headers, data = data)
 

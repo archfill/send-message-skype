@@ -12,20 +12,22 @@ function sendMessageSkype(req, res, next) {
 
   // MicrosoftBotFrameworkのOAuthClient認証を行いaccess_tokenを取得する
 
-  var headers = "Content-Type : application/x-www-form-urlencoded";
-  var bodys = 'grant_type=client_credentials,' +
-    'client_id=31df04c5-00e6-4e1e-98a0-e04a7e292e9b,' +
-    'client_secret=YZzoCR9LwicAwSsqAfRjN0N,' +
-    'scope=https://graph.microsoft.com/.default';
+  var headers = {
+    'Content-Type' : 'application/x-www-form-urlencoded'
+  };
+  var bodys = {
+    'grant_type' : 'client_credentials',
+    'client_id' : '31df04c5-00e6-4e1e-98a0-e04a7e292e9b',
+    'client_secret' : 'YZzoCR9LwicAwSsqAfRjN0N',
+    'scope' : 'https://graph.microsoft.com/.default'
+  };
   var access_token;
   var response = request(
     'POST',
     'https://login.microsoftonline.com/common/oauth2/v2.0/token',
     {
       headers: headers,
-      body: {
-        bodys
-      }
+      body: bodys
     });
 
   console.log(response);

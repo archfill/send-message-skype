@@ -5,7 +5,9 @@ var request = require('request');
 var async = require('async');
 
 var server = restify.createServer();
-server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.bodyParser({
+  mapParams: true,
+}));
 server.listen(process.env.port || process.env.PORT || 3978, function () {
   console.log('%s listening to %s', server.name, server.url);
 });
@@ -27,7 +29,7 @@ function sendMessageSkype(req, res, next) {
     }
   };
 
-  console.log('req:' + req.params);
+  console.log('req:' + req.body);
 
   async.waterfall([
     function (callback) {

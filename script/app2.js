@@ -74,7 +74,8 @@ function sendMessageSkype(req, res, next) {
 
       request(options, function (error, response, body) {
         if (body) {
-          if ('201' == response.statucCode) {
+          console.log('response.statucCode:' + response.statucCode);
+          if (201 === response.statucCode) {
             result = {
               "code" : 0000,
               "message" : "正常終了しました。"

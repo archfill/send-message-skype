@@ -62,7 +62,7 @@ function sendMessageSkype(req, res, next) {
         url: url,
         method: 'POST',
         headers: headers,
-        json: JSON.stringify(data);
+        json: JSON.stringify(data)
       };
 
       request(options, function (error, response, body) {

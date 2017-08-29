@@ -32,13 +32,14 @@ function sendMessageSkype(req, res, next) {
       request(options, function (error, response, body) {
         if (body) {
           console.log('succes!');
-          console.log(JSON.parse(body)['access_token']);
+          console.log(body);
           access_token = JSON.parse(body)['access_token'];
         };
         if (error) {
           console.log('error!');
           console.log(error);
         };
+        console.log(options);
         //次の処理を呼び出す。callbackを呼ばないと次の処理は実行されない
         callback(null, access_token);
       });
@@ -63,6 +64,8 @@ function sendMessageSkype(req, res, next) {
         headers: headers,
         json: data
       };
+
+      console.log(JSON.stringify(options));
 
       request(options, function (error, response, body) {
         if (body) {

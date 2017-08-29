@@ -71,8 +71,15 @@ function sendMessageSkype(req, res, next) {
       // console.log(JSON.stringify(options));
 
       request(options, function (error, response, body) {
+        var result;
         if (body) {
-          console.log('succes!');
+          if (body.statucCode == 201) {
+            result = {
+              "code" : 0000,
+              "message" : "正常終了しました。"
+            }
+          }
+          console.log('send skype:');
           console.log(body);
         };
         if (error) {
@@ -82,7 +89,7 @@ function sendMessageSkype(req, res, next) {
         console.log(JSON.stringify(response));
       });
 
-      callback(null, 'hey');
+      callback(null, result);
     },
   ], function (err, send_message) {
     if (err) {

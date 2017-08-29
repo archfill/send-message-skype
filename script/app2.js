@@ -70,8 +70,9 @@ function sendMessageSkype(req, res, next) {
 
       // console.log(JSON.stringify(options));
 
+      var result;
+
       request(options, function (error, response, body) {
-        var result;
         if (body) {
           if (body.statucCode == 201) {
             result = {

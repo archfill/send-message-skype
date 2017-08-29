@@ -51,8 +51,7 @@ function sendMessageSkype(req, res, next) {
       var url = serviceUrl + '/v3/conversations/' + target_chat + '/activities';
       var message = 'test';
       var headers = {
-        'Authorization': 'Bearer ' + access_token,
-        'Content-Type': 'application/json'
+        'Authorization': 'Bearer ' + access_token
       };
       var data = {
         'type': 'message',
@@ -62,7 +61,7 @@ function sendMessageSkype(req, res, next) {
         url: url,
         method: 'POST',
         headers: headers,
-        json: JSON.stringify(data)
+        json: data
       };
 
       request(options, function (error, response, body) {

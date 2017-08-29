@@ -29,8 +29,6 @@ function sendMessageSkype(req, res, next) {
     }
   };
 
-  console.log('req:' + JSON.stringify(req.params));
-
   async.waterfall([
     function (callback) {
       var access_token;
@@ -55,7 +53,7 @@ function sendMessageSkype(req, res, next) {
       var target_chat = '19:2031ade936744c32834165865eb4d6ee@thread.skype';
       var serviceUrl = 'https://skype.botframework.com';
       var url = serviceUrl + '/v3/conversations/' + target_chat + '/activities';
-      var message = 'test';
+      var message = req.params.message;
       var headers = {
         'Authorization': 'Bearer ' + access_token
       };

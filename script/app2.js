@@ -26,6 +26,8 @@ function sendMessageSkype(req, res, next) {
     }
   };
 
+  console.log(req.body);
+
   async.waterfall([
     function (callback) {
       var access_token;
@@ -79,7 +81,7 @@ function sendMessageSkype(req, res, next) {
         console.log(JSON.stringify(response));
       });
 
-      callback(null, req.body);
+      callback(null, 'hey');
     },
   ], function (err, send_message) {
     if (err) {

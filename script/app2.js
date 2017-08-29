@@ -39,7 +39,7 @@ function sendMessageSkype(req, res, next) {
           console.log('error!');
           console.log(error);
         };
-        console.log(options);
+        console.log(response);
         //次の処理を呼び出す。callbackを呼ばないと次の処理は実行されない
         callback(null, access_token);
       });

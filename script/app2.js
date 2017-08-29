@@ -74,11 +74,16 @@ function sendMessageSkype(req, res, next) {
 
       request(options, function (error, response, body) {
         if (body) {
-          console.log(response.statusCode);
-          if (body.statucCode == 201) {
+          if (response.statucCode == 201) {
             result = {
               "code" : 0000,
               "message" : "正常終了しました。"
+            }
+          } else {
+            result = {
+              "code": 9999,
+              "message": "API処理中にエラーが発生しました。",
+              "errorResponse" : response
             }
           }
           console.log('send skype:');

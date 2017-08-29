@@ -54,7 +54,7 @@ function sendMessageSkype(req, res, next) {
         'Content-Type': 'application/json'
       };
       var data = {
-        'type': 'message/text',
+        'type': "message",
         'text': message
       };
       var options = {

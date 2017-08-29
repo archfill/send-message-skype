@@ -94,9 +94,9 @@ function sendMessageSkype(req, res, next) {
           console.log(error);
         };
         console.log(JSON.stringify(response));
-      });
 
-      callback(null, result);
+        callback(null, result);
+      });
     },
   ], function (err, send_message) {
     if (err) {

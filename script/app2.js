@@ -2,6 +2,7 @@
 
 var restify = require('restify');
 var request = require('request');
+var async = require('async');
 
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -25,61 +26,66 @@ function sendMessageSkype(req, res, next) {
     }
   };
 
-  var access_token;
-  request(options, function (error, response, body) {
-    if (body) {
-      console.log('succes!');
-      console.log(JSON.parse(body)['access_token']);
-      access_token = JSON.parse(body)['access_token'];
-    };
-    if (error) {
-      console.log('error!');
-      console.log(error);
-    };
+  async.waterfall([
+    function (callback) {
+      client.MGET("userprofiles", function (err, access_token) {
+        request(options, function (error, response, body) {
+          if (body) {
+            console.log('succes!');
+            console.log(JSON.parse(body)['access_token']);
+            access_token = JSON.parse(body)['access_token'];
+          };
+          if (error) {
+            console.log('error!');
+            console.log(error);
+          };
+        });
+        //次の処理を呼び出す。callbackを呼ばないと次の処理は実行されない
+        callback(null, access_token);
+      });
+    },
+    function (access_token, callback) {
+      console.log('access_token:' + access_token);
+      // MicrosoftBotFrameworkのチャット投稿用RESTAPIを叩く
+      var target_chat = '19:26aa87fcb80f43728abdfd129f3e43c2@thread.skype';
+      var url = 'https://api.skype.net/v3/conversations/' + target_chat + '/activities/';
+      var message = 'test';
+      var headers = {
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+      };
+      var data = {
+        'type': 'message/text',
+        'text': message
+      };
+      var options = {
+        url: url,
+        method: 'POST',
+        headers: headers,
+        json: {
+          'data': data
+        }
+      };
+
+      request(options, function (error, response, body) {
+        if (body) {
+          console.log('succes!');
+          console.log(body);
+        };
+        if (error) {
+          console.log('error!');
+          console.log(error);
+        };
+        console.log(JSON.stringify(response));
+      });
+
+      callback(null, 'hey!');
+    },
+  ], function (err, send_message) {
+    res.send(send_message);
+    return
   });
 
-  console.log('access_token:' + access_token);
-
-  var target_chat = '19:26aa87fcb80f43728abdfd129f3e43c2@thread.skype';
-  var url = 'https://api.skype.net/v3/conversations/' + target_chat + '/activities/';
-
-  var message = 'test';
-
-  // MicrosoftBotFrameworkのチャット投稿用RESTAPIを叩く
-
-  var headers = {
-    'Authorization': 'Bearer ' + access_token,
-    'Content-Type': 'application/json'
-  };
-
-  var data = {
-    'type': 'message/text',
-    'text': message
-  };
-
-  var options = {
-    url: url,
-    method: 'POST',
-    headers: headers,
-    json: {
-      'data': data
-    }
-  };
-
-  request(options, function (error, response, body) {
-    if (body) {
-      console.log('succes!');
-      console.log(body);
-    };
-    if (error) {
-      console.log('error!');
-      console.log(error);
-    };
-    console.log(JSON.stringify(response));
-  });
-
-  res.send('hey!');
-
-  return
 };
+
 server.post('/api/send_message_skype', sendMessageSkype);

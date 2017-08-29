@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "botbuilder": "^3.8.4",
     "restify": "^5.0.0",
     "sync-request": "^4.1.0"

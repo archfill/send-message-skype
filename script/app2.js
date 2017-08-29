@@ -77,12 +77,12 @@ function sendMessageSkype(req, res, next) {
           console.log('response.statucCode:' + response.statusCode);
           if (201 === response.statusCode) {
             result = {
-              "code" : 0000,
+              "code": 201,
               "message" : "正常終了しました。"
             }
           } else {
             result = {
-              "code": 9999,
+              "code": 409,
               "message": "API処理中にエラーが発生しました。",
               "errorResponse" : response
             }
@@ -102,8 +102,8 @@ function sendMessageSkype(req, res, next) {
   ], function (err, send_message) {
     if (err) {
       var errormessage = {
-        code : '9999',
-        message : "API処理中にエラーが発生しました。"
+        "code": 409,
+        "message" : "API処理中にエラーが発生しました。"
       };
       res.send(errormessage);
       console.log(err);

@@ -82,7 +82,7 @@ function sendMessageSkype(req, res, next) {
       callback(null, 'hey!');
     },
   ], function (err, send_message) {
-    res.send(req.params);
+    res.send(req.params.message);
     return
   });
 

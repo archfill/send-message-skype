@@ -6,7 +6,7 @@ var async = require('async');
 
 var server = restify.createServer();
 server.use(restify.plugins.bodyParser({
-  mapParams: true,
+  mapParams: true
 }));
 server.listen(process.env.port || process.env.PORT || 3978, function () {
   console.log('%s listening to %s', server.name, server.url);

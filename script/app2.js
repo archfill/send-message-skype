@@ -26,7 +26,7 @@ function sendMessageSkype(req, res, next) {
     }
   };
 
-  console.log('req:' + req.params);
+  console.log('req:' + JSON.stringify(req.params));
 
   async.waterfall([
     function (callback) {

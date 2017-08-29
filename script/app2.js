@@ -54,10 +54,10 @@ function sendMessageSkype(req, res, next) {
         'Authorization': 'Bearer ' + access_token,
         'Content-Type': 'application/json'
       };
-      var data = {
+      var data = JSON.stringify({
         'type': 'message',
         'text': message
-      };
+      });
       var options = {
         url: url,
         method: 'POST',

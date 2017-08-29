@@ -79,10 +79,19 @@ function sendMessageSkype(req, res, next) {
         console.log(JSON.stringify(response));
       });
 
-      callback(null, 'hey!');
+      callback(null, req.params.message);
     },
   ], function (err, send_message) {
-    res.send(req.params.message);
+    if (err) {
+      var errormessage = {
+        code : '9999',
+        message : "API処理中にエラーが発生しました。"
+      };
+      res.send(errormessage);
+      console.log(err);
+      return
+    }
+    res.send(send_message);
     return
   });
 

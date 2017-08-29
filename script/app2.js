@@ -82,8 +82,7 @@ function sendMessageSkype(req, res, next) {
       callback(null, 'hey!');
     },
   ], function (err, send_message) {
-    console.log(JSON.stringify(req));
-    res.send(send_message);
+    res.send(req.params);
     return
   });
 

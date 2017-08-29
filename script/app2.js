@@ -74,6 +74,7 @@ function sendMessageSkype(req, res, next) {
 
       request(options, function (error, response, body) {
         if (body) {
+          console.log(body.statucCode);
           if (body.statucCode == 201) {
             result = {
               "code" : 0000,

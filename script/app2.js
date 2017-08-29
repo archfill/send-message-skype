@@ -47,7 +47,7 @@ function sendMessageSkype(req, res, next) {
       console.log('access_token:' + access_token);
       // MicrosoftBotFrameworkのチャット投稿用RESTAPIを叩く
       var target_chat = '19:26aa87fcb80f43728abdfd129f3e43c2@thread.skype';
-      var serviceUrl = 'https://smba.trafficmanager.net/apis';
+      var serviceUrl = 'https://skype.botframework.com';
       var url = serviceUrl + '/v3/conversations/' + target_chat + '/activities';
       var message = 'test';
       var headers = {

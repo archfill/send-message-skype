@@ -13,5 +13,9 @@
     "botbuilder": "^3.8.4",
     "restify": "^5.0.0",
     "sync-request": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/my-skype-bot.git"
   }
 }

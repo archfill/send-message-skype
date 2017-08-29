@@ -54,16 +54,14 @@ function sendMessageSkype(req, res, next) {
         'Content-Type': 'application/json'
       };
       var data = {
-        'type': "message",
+        'type': 'message',
         'text': message
       };
       var options = {
         url: url,
         method: 'POST',
         headers: headers,
-        json: {
-          'data': data
-        }
+        json: data
       };
 
       request(options, function (error, response, body) {

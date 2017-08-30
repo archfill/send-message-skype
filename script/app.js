@@ -39,7 +39,7 @@ intents.matches(/.*hey.*/i, function (session) {
   session.send('morning');
 }).matches(/.*weather.*/i, function (session) {
   sendInternetUrl(session, 'http://openweathermap.org/img/w/03n.png', 'image/png', 'Weather.png');
-  session.send('こんにちは\ntest');
+  session.send('こんにちは\n\ntest');
 });
 
 intents.onDefault(function (session) {

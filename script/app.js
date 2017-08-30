@@ -97,6 +97,7 @@ function getWeatherData(city){
       });
     },
   ], function (err, result) {
+    console.log('result:' + result);
     if (err) {
       var errormessage = {
         "code": 409,

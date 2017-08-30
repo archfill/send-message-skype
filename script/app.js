@@ -41,6 +41,8 @@ intents.matches(/.*hey.*/i, function (session) {
   getWeatherData(session, 'Nagoya-shi');
 }).matches(/.*weather bangkok.*/i, function (session) {
   getWeatherData(session, 'bangkok');
+}).matches(/.*weather .*/i, function (session) {
+  session.send("You said: %s", session.message.text);
 }).matches(/.*What do you know\?.*/i, function (session) {
   var sendtext = 'I know the weather.\n\n';
   sendtext = sendtext + '[mention] weather nagoya\n\n';

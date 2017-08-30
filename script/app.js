@@ -70,6 +70,10 @@ function getWeatherData(session, city) {
           var parseBody = JSON.parse(body);
           var weathermain = parseBody.weather[0].description;
           var temp = (parseBody.main.temp - baseCelsius);
+
+          var n = 1;	// 小数点第n位まで残す
+          temp = Math.floor(temp * Math.pow(10, n)) / Math.pow(10, n);
+
           var country = parseBody.sys.country;
           var name = parseBody.name;
           var icon = parseBody.weather[0].icon;

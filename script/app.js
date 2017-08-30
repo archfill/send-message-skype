@@ -70,6 +70,7 @@ intents.matches(/.*hey.*/i, function (session) {
           sendMessage = sendMessage + ',' + arr[resultIndex];
         }
       };
+      session.send(sendMessage);
     } else {
       getWeatherData(session, targetCity);
     };

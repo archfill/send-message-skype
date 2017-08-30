@@ -59,13 +59,17 @@ intents.matches(/.*hey.*/i, function (session) {
     var reg = new RegExp(targetCity, 'i');
     var arr = text.split(/\r\n|\r|\n/);
     var resultIndex = [];
+    var perfectMatchFlag = false;
     for (var i = 0; i < arr.length; i++) {
       if (arr[i].match(reg)) {
+        if (arr[i] === targetCity) {
+          perfectMatchFlag = true;
+        }
         resultIndex.push(i);
       };
     };
 
-    if (resultIndex.length > 1) {
+    if (!perfectMatchFlag && resultIndex.length > 1) {
       var sendMessage = 'More than one city was found.\n\n';
       sendMessage = sendMessage + 'Please select it and try again.\n\n';
       for (var i = 0; i < resultIndex.length; i++) {

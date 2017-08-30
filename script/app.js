@@ -60,6 +60,7 @@ intents.matches(/.*hey.*/i, function (session) {
         resultIndex.push(i);
       };
     };
+    console.log('!!!!!!!!!!!!!!!!!!');
     if (resultIndex.length > 1) {
       var sendMessage = 'More than one city was found.\n\n';
       sendMessage = sendMessage + 'Please select it and try again.\n\n';
@@ -70,6 +71,7 @@ intents.matches(/.*hey.*/i, function (session) {
           sendMessage = sendMessage + ',' + arr[resultIndex];
         }
       };
+      console.log('!!!!!!!!!!!!!!!!!!' + sendMessage);
       session.send(sendMessage);
     } else {
       getWeatherData(session, targetCity);

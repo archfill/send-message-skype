@@ -52,7 +52,6 @@ intents.matches(/.*hey.*/i, function (session) {
   session.send("I will check the weather in %s. ;)", targetCity);
   console.log(path.join(__dirname, 'city_list.txt'));
   fs.readFile(path.join(__dirname, 'city_list.txt'), 'utf8', function (err, text) {
-    console.log(text);
     if (err) {
       console.log('read text error!!!!');
       console.log(err);
@@ -70,6 +69,7 @@ intents.matches(/.*hey.*/i, function (session) {
       var sendMessage = 'More than one city was found.\n\n';
       sendMessage = sendMessage + 'Please select it and try again.\n\n';
       for (var i = 0; i < resultIndex.length; i++) {
+        console.log('arr[resultIndex]' + arr[resultIndex]);
         if (i === 0) {
           sendMessage = sendMessage + arr[resultIndex];
         } else {

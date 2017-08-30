@@ -38,7 +38,7 @@ intents.matches(/.*hey.*/i, function (session) {
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
 }).matches(/.*weather.*/i, function (session) {
-  getWeatherData('Tokyo');
+  getWeatherData(session, 'Tokyo');
 });
 
 intents.onDefault(function (session) {
@@ -57,7 +57,7 @@ function sendInternetUrl(session, url, contentType, attachmentFileName) {
   session.send(msg);
 }
 
-function getWeatherData(city){
+function getWeatherData(session, city){
   var baseCelsius = 273.15;
 
   var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=1488a11f10fba472a81f4cdedb0d04c5';

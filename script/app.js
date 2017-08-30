@@ -77,7 +77,7 @@ function getWeatherData(session, city) {
           var weatherText = 'weather : ' + weathermain + '\n\n';
           var weatherText = weatherText + 'temp : ' + temp + '\n\n';
           var weatherText = weatherText + 'country : ' + country + '\n\n';
-          var weatherText = weatherText + 'name : ' + name + '\n\n';
+          var weatherText = weatherText + 'city : ' + name + '\n\n';
 
           result.text = weatherText;
           result.icon = icon;

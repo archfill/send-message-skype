@@ -4,6 +4,7 @@ var restify = require('restify');
 var request = require('request');
 var async = require('async');
 var builder = require('botbuilder');
+var fs = require('fs');
 
 var server = restify.createServer();
 server.use(restify.plugins.bodyParser({

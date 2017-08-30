@@ -39,7 +39,7 @@ intents.matches(/.*hey.*/i, function (session) {
 });
 
 intents.onDefault(function (session) {
-  session.send("未定義です。");
+  session.send("I’m sorry, I don’t know. ;(");
 });
 
 //=========================================================

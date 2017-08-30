@@ -28,23 +28,16 @@ server.post('/api/messages', connector.listen());
 var intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-//複数の条件を指定する場合はmatchesAnyに配列で渡す
-//正規表現で .*hoge.* は「hogeが入っているなら」にマッチする
-// 「/  /i」  正規表現のiフラグは大文字小文字を区別しないようにできる
-// http://kyu-mu.net/coffeescript/regexp/
 intents.matchesAny([/.*hi.*/i, /.*hello.*/i, /.*こんにちは.*/i], function (session) {
   session.send('こんにちは');
 });
 
-// 1つの条件でいい場合はmatches
-// 複数チェインすることも可能
 intents.matches(/.*hey.*/i, function (session) {
   session.send('hey!');
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
 });
 
-// どの条件にもマッチしない場合はonDefault
 intents.onDefault(function (session) {
   session.send("未定義です。");
 });

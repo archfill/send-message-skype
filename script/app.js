@@ -39,8 +39,22 @@ intents.matches(/.*hey.*/i, function (session) {
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
 }).matches(/.*weather:nagoya.*/i, function (session) {
+  var texts = session.message.text.split(':');
+  if (texts.length !== 2) {
+    session.send("I’m sorry, I don’t know. ;(");
+    return;
+  };
+  var targetCity = texts[1];
+  session.send("I will check the weather in %s. ;)", targetCity);
   getWeatherData(session, 'Nagoya-shi');
 }).matches(/.*weather:bangkok.*/i, function (session) {
+  var texts = session.message.text.split(':');
+  if (texts.length !== 2) {
+    session.send("I’m sorry, I don’t know. ;(");
+    return;
+  };
+  var targetCity = texts[1];
+  session.send("I will check the weather in %s. ;)", targetCity);
   getWeatherData(session, 'bangkok');
 }).matches(/.*weather:.*/i, function (session) {
   var texts = session.message.text.split(':');

@@ -77,7 +77,11 @@ intents.matches(/.*hey.*/i, function (session) {
         }
       };
       console.log('!!!!!!!!!!!!!!!!!!' + sendMessage);
-      session.send(sendMessage);
+      if (sendMessage.length > 200) {
+        session.send('Please tell me the city in detail. ;(');
+      } else {
+        session.send(sendMessage);
+      };
     } else {
       getWeatherData(session, targetCity);
     };

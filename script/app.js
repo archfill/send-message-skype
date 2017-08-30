@@ -37,14 +37,12 @@ intents.matches(/.*hey.*/i, function (session) {
   session.send('hey!');
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
+}).matches(/.*weather.*/i, function (session) {
+  sendInternetUrl(session, 'http://openweathermap.org/img/w/03n.png', 'image/png', 'Weather.png');
 });
 
 intents.onDefault(function (session) {
   session.send("I’m sorry, I don’t know. ;(");
-});
-
-intents.matchesAny([/.*weather.*/i], function (session) {
-  return sendInternetUrl(session, 'http://openweathermap.org/img/w/03n.png', 'image/png', 'Weather.png');
 });
 
 // Sends attachment inline in base64
@@ -67,7 +65,9 @@ function sendMessageSkype(req, res, next) {
 
   // MicrosoftBotFrameworkのOAuthClient認証を行いaccess_tokenを取得する
 
-  var headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+  var headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  };
   var options = {
     url: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
     method: 'POST',
@@ -127,13 +127,13 @@ function sendMessageSkype(req, res, next) {
           if (201 === response.statusCode) {
             result = {
               "code": 201,
-              "message" : "正常終了しました。"
+              "message": "正常終了しました。"
             }
           } else {
             result = {
               "code": 409,
               "message": "API処理中にエラーが発生しました。",
-              "errorResponse" : response
+              "errorResponse": response
             }
           }
           console.log('send skype:');
@@ -152,7 +152,7 @@ function sendMessageSkype(req, res, next) {
     if (err) {
       var errormessage = {
         "code": 409,
-        "message" : "API処理中にエラーが発生しました。"
+        "message": "API処理中にエラーが発生しました。"
       };
       res.send(errormessage);
       console.log(err);

@@ -44,6 +44,10 @@ intents.matches(/.*hey.*/i, function (session) {
   getWeatherData(session, 'bangkok');
 }).matches(/.*weather:.*/i, function (session) {
   var texts = session.message.text.split(':');
+  if (texts.length !== 2) {
+    session.send("I’m sorry, I don’t know. ;(");
+    return;
+  };
   var targetCity = texts[1];
   session.send("I will check the weather in %s. ;)", targetCity);
   console.log(path.join(__dirname, 'city_list.txt'));

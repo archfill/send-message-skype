@@ -40,7 +40,7 @@ intents.matches(/.*hey.*/i, function (session) {
 }).matches(/.*weather nagoya.*/i, function (session) {
   getWeatherData(session, 'Nagoya-shi');
 }).matches(/.*weather bangkok.*/i, function (session) {
-  getWeatherData(session, 'Bangkok');
+  getWeatherData(session, 'bangkok');
 }).matches(/.*What do you know\?.*/i, function (session) {
   var sendtext = 'I know the weather.\n\n';
   sendtext = sendtext + '[mention] weather nagoya\n\n';

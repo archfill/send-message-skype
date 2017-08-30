@@ -42,18 +42,45 @@ intents.matches(/.*hey.*/i, function (session) {
 }).matches(/.*weather bangkok.*/i, function (session) {
   getWeatherData(session, 'bangkok');
 }).matches(/.*weather .*/i, function (session) {
-  var texts = session.message.text.split(' ');
-  session.send("I will check the weather in %s. ;)", texts[2]);
-  getWeatherData(session, texts[2]);
+  var texts = session.message.text.split(':');
+  var targetCity = texts[1];
+  session.send("I will check the weather in %s. ;)", targetCity);
+  fs.readFile('./city_list.txt', 'utf8', function (err, text) {
+    if (err) {
+      console.log('read text error!!!!');
+      console.log(err);
+    };
+    var reg = new RegExp(targetCity, 'i');
+    var arr = text.split(/\r\n|\r|\n/);
+    var resultIndex = [];
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].match(reg)) {
+        resultIndex.push(i);
+      };
+    };
+    if (resultIndex.length > 1) {
+      var sendMessage = 'More than one city was found.\n\n';
+      sendMessage = sendMessage + 'Please select it and try again.\n\n';
+      for (var i = 0; i < resultIndex.length; i++) {
+        if (i === 0) {
+          sendMessage = sendMessage + arr[resultIndex];
+        } else {
+          sendMessage = sendMessage + ',' + arr[resultIndex];
+        }
+      };
+    } else {
+      getWeatherData(session, targetCity);
+    };
+  });
 }).matches(/.*What do you know\?.*/i, function (session) {
   var sendtext = 'I know the weather.\n\n';
-  sendtext = sendtext + '[mention] weather nagoya\n\n';
-  sendtext = sendtext + '[mention] weather bangkok';
+  sendtext = sendtext + '[mention] weather:[city]';
   session.send(sendtext);
 }).matches(/.*help.*/i, function (session) {
   var sendtext = 'weather.\n\n';
-  sendtext = sendtext + '[mention] weather nagoya\n\n';
-  sendtext = sendtext + '[mention] weather bangkok';
+  sendtext = sendtext + '[mention] weather:[city]\n\n';
+  sendtext = sendtext + '[mention] weather:nagoya\n\n';
+  sendtext = sendtext + '[mention] weather:bangkok';
   session.send(sendtext);
 });
 

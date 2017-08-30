@@ -106,7 +106,7 @@ function getWeatherData(session, city) {
     var icon = result.icon;
     console.log('icon:' + icon);
     sendInternetUrl(session, 'http://openweathermap.org/img/w/' + icon + '.png', 'image/png', 'Weather.png');
-    session.send('text');
+    session.send(text);
     return;
   });
 }

@@ -45,7 +45,7 @@ intents.matches(/.*hey.*/i, function (session) {
   var texts = session.message.text.split(':');
   var targetCity = texts[1];
   session.send("I will check the weather in %s. ;)", targetCity);
-  fs.readFile('./city_list.txt', 'utf8', function (err, text) {
+  fs.readFile(__dirname + '/city_list.txt', 'utf8', function (err, text) {
     if (err) {
       console.log('read text error!!!!');
       console.log(err);

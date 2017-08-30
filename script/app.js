@@ -38,12 +38,7 @@ intents.matches(/.*hey.*/i, function (session) {
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
 }).matches(/.*weather.*/i, function (session) {
-  var getData = getWeatherData('Tokyo');
-  console.log('getData:' + getData);
-  var text = getData.text;
-  var icon = getData.icon;
-  sendInternetUrl(session, 'http://openweathermap.org/img/w/' + icon + '.png', 'image/png', 'Weather.png');
-  session.send(text);
+  getWeatherData('Tokyo');
 });
 
 intents.onDefault(function (session) {
@@ -107,7 +102,12 @@ function getWeatherData(city){
       console.log(err);
       return
     }
-    return result;
+    console.log('getWeatherData result:' + result);
+    var text = result.text;
+    var icon = result.icon;
+    sendInternetUrl(session, 'http://openweathermap.org/img/w/' + icon + '.png', 'image/png', 'Weather.png');
+    session.send(text);
+    return;
   });
 }
 

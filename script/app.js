@@ -48,6 +48,7 @@ intents.matches(/.*hey.*/i, function (session) {
   session.send("I will check the weather in %s. ;)", targetCity);
   console.log(path.join(__dirname, 'city_list.txt'));
   fs.readFile(path.join(__dirname, 'city_list.txt'), 'utf8', function (err, text) {
+    console.log(text);
     if (err) {
       console.log('read text error!!!!');
       console.log(err);

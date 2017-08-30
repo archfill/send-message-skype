@@ -78,10 +78,10 @@ function getWeatherData(city){
           var name = parseBody.name;
           var icon = parseBody.weather.icon;
 
-          var weatherText = 'weather : ' + weathermain '\n\n';
-          var weatherText = weatherText + 'temp : ' + temp '\n\n';
-          var weatherText = weatherText + 'country : ' + country '\n\n';
-          var weatherText = weatherText + 'name : ' + name '\n\n';
+          var weatherText = 'weather : ' + weathermain + '\n\n';
+          var weatherText = weatherText + 'temp : ' + temp + '\n\n';
+          var weatherText = weatherText + 'country : ' + country + '\n\n';
+          var weatherText = weatherText + 'name : ' + name + '\n\n';
 
           result = {
             "text": weatherText,

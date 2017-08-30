@@ -38,11 +38,11 @@ intents.matches(/.*hey.*/i, function (session) {
   session.send('hey!');
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
-}).matches(/.*weather nagoya.*/i, function (session) {
+}).matches(/.*weather:nagoya.*/i, function (session) {
   getWeatherData(session, 'Nagoya-shi');
-}).matches(/.*weather bangkok.*/i, function (session) {
+}).matches(/.*weather:bangkok.*/i, function (session) {
   getWeatherData(session, 'bangkok');
-}).matches(/.*weather .*/i, function (session) {
+}).matches(/.*weather:.*/i, function (session) {
   var texts = session.message.text.split(':');
   var targetCity = texts[1];
   session.send("I will check the weather in %s. ;)", targetCity);

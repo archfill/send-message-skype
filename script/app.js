@@ -38,8 +38,11 @@ intents.matches(/.*hey.*/i, function (session) {
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
 }).matches(/.*weather.*/i, function (session) {
-  sendInternetUrl(session, 'http://openweathermap.org/img/w/03n.png', 'image/png', 'Weather.png');
-  session.send('こんにちは\n\ntest');
+  var getData = getWeatherData('Tokyo');
+  var text = getData.text;
+  var icon = getData.icon;
+  sendInternetUrl(session, 'http://openweathermap.org/img/w/' + icon + '.png', 'image/png', 'Weather.png');
+  session.send(text);
 });
 
 intents.onDefault(function (session) {
@@ -56,6 +59,56 @@ function sendInternetUrl(session, url, contentType, attachmentFileName) {
     });
 
   session.send(msg);
+}
+
+function getWeatherData(city){
+  var baseCelsius = 273.15;
+
+  var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=1488a11f10fba472a81f4cdedb0d04c5';
+
+  async.waterfall([
+    function (callback) {
+      var result;
+      request(url, function (error, response, body) {
+        if (body) {
+          var parseBody = JSON.parse(body);
+          var weathermain = parseBody.weather.description;
+          var temp = (parseBody.main.temp - baseCelsius);
+          var country = parseBody.sys.country;
+          var name = parseBody.name;
+          var icon = parseBody.weather.icon;
+
+          var weatherText = 'weather : ' + weathermain '\n\n';
+          var weatherText = weatherText + 'temp : ' + temp '\n\n';
+          var weatherText = weatherText + 'country : ' + country '\n\n';
+          var weatherText = weatherText + 'name : ' + name '\n\n';
+
+          result = {
+            "text": weatherText,
+            "icon": icon
+          };
+        };
+        if (error) {
+          console.log('error!');
+          console.log(error);
+        };
+        console.log(JSON.stringify(response));
+        //次の処理を呼び出す。callbackを呼ばないと次の処理は実行されない
+        callback(null, result);
+      });
+    },
+  ], function (err, result) {
+    if (err) {
+      var errormessage = {
+        "code": 409,
+        "message": "API処理中にエラーが発生しました。"
+      };
+      res.send(errormessage);
+      console.log(err);
+      return
+    }
+    return result;
+  });
 }
 
 //=========================================================

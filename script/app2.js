@@ -50,7 +50,7 @@ function sendMessageSkype(req, res, next) {
     function (access_token, callback) {
       console.log('access_token:' + access_token);
       // MicrosoftBotFrameworkのチャット投稿用RESTAPIを叩く
-      var target_chat = '19:2031ade936744c32834165865eb4d6ee@thread.skype';
+      var target_chat = req.params.group_chat_id;
       var serviceUrl = 'https://skype.botframework.com';
       var url = serviceUrl + '/v3/conversations/' + target_chat + '/activities';
       var message = req.params.message;
@@ -74,7 +74,7 @@ function sendMessageSkype(req, res, next) {
 
       request(options, function (error, response, body) {
         if (body) {
-          console.log('response.statucCode:' + response.statusCode);
+          console.log('response.statusCode:' + response.statusCode);
           if (201 === response.statusCode) {
             result = {
               "code": 201,

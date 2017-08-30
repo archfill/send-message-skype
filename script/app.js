@@ -69,7 +69,7 @@ function getWeatherData(city){
 
   async.waterfall([
     function (callback) {
-      var result;
+      var result = {};
       request(url, function (error, response, body) {
         if (body) {
           var parseBody = JSON.parse(body);
@@ -84,10 +84,8 @@ function getWeatherData(city){
           var weatherText = weatherText + 'country : ' + country + '\n\n';
           var weatherText = weatherText + 'name : ' + name + '\n\n';
 
-          result = {
-            text: weatherText,
-            icon: icon
-          };
+          result.text = weatherText;
+          result.icon = icon;
         };
         if (error) {
           console.log('error!');

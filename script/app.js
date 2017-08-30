@@ -5,6 +5,7 @@ var request = require('request');
 var async = require('async');
 var builder = require('botbuilder');
 var fs = require('fs');
+var path = require('path');
 
 var server = restify.createServer();
 server.use(restify.plugins.bodyParser({
@@ -45,7 +46,8 @@ intents.matches(/.*hey.*/i, function (session) {
   var texts = session.message.text.split(':');
   var targetCity = texts[1];
   session.send("I will check the weather in %s. ;)", targetCity);
-  fs.readFile(__dirname + '/city_list.txt', 'utf8', function (err, text) {
+  console.log(path.join(__dirname, 'city_list.txt'));
+  fs.readFile(path.join(__dirname, 'city_list.txt'), 'utf8', function (err, text) {
     if (err) {
       console.log('read text error!!!!');
       console.log(err);

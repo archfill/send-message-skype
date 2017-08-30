@@ -18,6 +18,7 @@
     "async": "^2.5.0",
     "botbuilder": "^3.8.4",
     "fs": "0.0.1-security",
+    "path": "^0.12.7",
     "request": "^2.81.0",
     "restify": "^5.0.0"
   },

@@ -37,8 +37,10 @@ intents.matches(/.*hey.*/i, function (session) {
   session.send('hey!');
 }).matches(/.*morning.*/i, function (session) {
   session.send('morning');
-}).matches(/.*weather.*/i, function (session) {
-  getWeatherData(session, 'Tokyo');
+}).matches(/.*weather nagoya.*/i, function (session) {
+  getWeatherData(session, 'Nagoya-shi');
+}).matches(/.*weather bangkok.*/i, function (session) {
+  getWeatherData(session, 'Bangkok');
 });
 
 intents.onDefault(function (session) {

@@ -57,7 +57,7 @@ function sendInternetUrl(session, url, contentType, attachmentFileName) {
   session.send(msg);
 }
 
-function getWeatherData(session, city){
+function getWeatherData(session, city) {
   var baseCelsius = 273.15;
 
   var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=1488a11f10fba472a81f4cdedb0d04c5';
@@ -92,7 +92,6 @@ function getWeatherData(session, city){
       });
     },
   ], function (err, result) {
-    console.log('result:' + result);
     if (err) {
       var errormessage = {
         "code": 409,
@@ -104,9 +103,10 @@ function getWeatherData(session, city){
     }
     console.log('getWeatherData result:' + result);
     var text = result.text;
+    console.log('text:' + text);
     var icon = result.icon;
     sendInternetUrl(session, 'http://openweathermap.org/img/w/' + icon + '.png', 'image/png', 'Weather.png');
-    session.send(text);
+    session.send('text');
     return;
   });
 }

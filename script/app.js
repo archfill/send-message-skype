@@ -73,6 +73,7 @@ function getWeatherData(session, city) {
 
           var n = 1;	// 小数点第n位まで残す
           temp = Math.floor(temp * Math.pow(10, n)) / Math.pow(10, n);
+          temp = temp + '°C';
 
           var country = parseBody.sys.country;
           var name = parseBody.name;

@@ -62,7 +62,7 @@ intents.matches(/.*hey.*/i, function (session) {
     var perfectMatchFlag = false;
     for (var i = 0; i < arr.length; i++) {
       if (arr[i].match(reg)) {
-        if (arr[i] === targetCity) {
+        if (arr[i].toUpperCase() === targetCity.toUpperCase()) {
           perfectMatchFlag = true;
         }
         resultIndex.push(i);

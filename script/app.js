@@ -69,11 +69,11 @@ intents.matches(/.*hey.*/i, function (session) {
       var sendMessage = 'More than one city was found.\n\n';
       sendMessage = sendMessage + 'Please select it and try again.\n\n';
       for (var i = 0; i < resultIndex.length; i++) {
-        console.log('arr[resultIndex]' + arr[resultIndex]);
+        console.log('arr[resultIndex[i]]' + arr[resultIndex[i]]);
         if (i === 0) {
-          sendMessage = sendMessage + arr[resultIndex];
+          sendMessage = sendMessage + arr[resultIndex[i]];
         } else {
-          sendMessage = sendMessage + ',' + arr[resultIndex];
+          sendMessage = sendMessage + ',' + arr[resultIndex[i]];
         }
       };
       console.log('!!!!!!!!!!!!!!!!!!' + sendMessage);

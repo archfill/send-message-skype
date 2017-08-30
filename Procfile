@@ -1,1 +1,1 @@
-web node script/app2.js
+web node script/app.js

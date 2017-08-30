@@ -64,7 +64,7 @@ intents.matches(/.*hey.*/i, function (session) {
         resultIndex.push(i);
       };
     };
-    console.log('!!!!!!!!!!!!!!!!!!');
+
     if (resultIndex.length > 1) {
       var sendMessage = 'More than one city was found.\n\n';
       sendMessage = sendMessage + 'Please select it and try again.\n\n';
@@ -76,7 +76,7 @@ intents.matches(/.*hey.*/i, function (session) {
           sendMessage = sendMessage + ',' + arr[resultIndex[i]];
         }
       };
-      console.log('!!!!!!!!!!!!!!!!!!' + sendMessage);
+
       if (sendMessage.length > 200) {
         session.send('Please tell me the city in detail. ;(');
       } else {

@@ -68,11 +68,11 @@ function getWeatherData(session, city) {
       request(url, function (error, response, body) {
         if (body) {
           var parseBody = JSON.parse(body);
-          var weathermain = parseBody.weather.description;
+          var weathermain = parseBody.weather[0].description;
           var temp = (parseBody.main.temp - baseCelsius);
           var country = parseBody.sys.country;
           var name = parseBody.name;
-          var icon = parseBody.weather.icon;
+          var icon = parseBody.weather[0].icon;
 
           var weatherText = 'weather : ' + weathermain + '\n\n';
           var weatherText = weatherText + 'temp : ' + temp + '\n\n';
@@ -101,10 +101,10 @@ function getWeatherData(session, city) {
       console.log(err);
       return
     }
-    console.log('getWeatherData result:' + result);
     var text = result.text;
     console.log('text:' + text);
     var icon = result.icon;
+    console.log('icon:' + icon);
     sendInternetUrl(session, 'http://openweathermap.org/img/w/' + icon + '.png', 'image/png', 'Weather.png');
     session.send('text');
     return;

@@ -41,6 +41,16 @@ intents.matches(/.*hey.*/i, function (session) {
   getWeatherData(session, 'Nagoya-shi');
 }).matches(/.*weather bangkok.*/i, function (session) {
   getWeatherData(session, 'Bangkok');
+}).matches(/.*What do you know\?.*/i, function (session) {
+  var sendtext = 'I know the weather.\n\n';
+  sendtext = sendtext + '[mention] weather nagoya\n\n';
+  sendtext = sendtext + '[mention] weather bangkok';
+  session.send(sendtext);
+}).matches(/.*help.*/i, function (session) {
+  var sendtext = 'weather.\n\n';
+  sendtext = sendtext + '[mention] weather nagoya\n\n';
+  sendtext = sendtext + '[mention] weather bangkok';
+  session.send(sendtext);
 });
 
 intents.onDefault(function (session) {

@@ -84,8 +84,8 @@ function getWeatherData(city){
           var weatherText = weatherText + 'name : ' + name + '\n\n';
 
           result = {
-            "text": weatherText,
-            "icon": icon
+            text: weatherText,
+            icon: icon
           };
         };
         if (error) {

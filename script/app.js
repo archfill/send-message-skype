@@ -44,27 +44,19 @@ intents.onDefault(function (session) {
 });
 
 intents.matchesAny([/.*weather.*/i], function (session) {
-  return sendInline(session, 'http://openweathermap.org/img/w/03n.png', 'image/png', 'Weather.png');
+  return sendInternetUrl(session, 'http://openweathermap.org/img/w/03n.png', 'image/png', 'Weather.png');
 });
 
 // Sends attachment inline in base64
-function sendInline(session, filePath, contentType, attachmentFileName) {
-  fs.readFile(filePath, function (err, data) {
-    if (err) {
-      return session.send('Oops. Error reading file.');
-    }
+function sendInternetUrl(session, url, contentType, attachmentFileName) {
+  var msg = new builder.Message(session)
+    .addAttachment({
+      contentUrl: url,
+      contentType: contentType,
+      name: attachmentFileName
+    });
 
-    var base64 = Buffer.from(data).toString('base64');
-
-    var msg = new builder.Message(session)
-      .addAttachment({
-        contentUrl: util.format('data:%s;base64,%s', contentType, base64),
-        contentType: contentType,
-        name: attachmentFileName
-      });
-
-    session.send(msg);
-  });
+  session.send(msg);
 }
 
 //=========================================================

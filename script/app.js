@@ -114,6 +114,8 @@ intents.matches(/.*hey.*/i, function (session) {
   sendtext = sendtext + '[mention] weather:nagoya\n\n';
   sendtext = sendtext + '[mention] weather:bangkok';
   session.send(sendtext);
+}).matches(/thank.*/i, function(session) {
+  session.send('You are welcome. (like)');
 });
 
 intents.onDefault(function (session) {

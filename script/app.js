@@ -114,6 +114,31 @@ intents.matches(/.*hey.*/i, function (session) {
   sendtext = sendtext + '[mention] weather:nagoya\n\n';
   sendtext = sendtext + '[mention] weather:bangkok';
   session.send(sendtext);
+}).matches(/.*test.*/i, function (session) {
+  var message = "おはよう"
+  var url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk';
+  var headers = {
+    'Content-Type':'application/x-www-form-urlencoded'
+  };
+  var data = {
+    'apikey=qUlwEUINrxKRfaPvto8pNwJQOKNNApsE&query' + message
+  };
+  var options = {
+    url: url,
+    method: 'POST',
+    headers: headers,
+    json: data
+  };
+  request(url, function (error, response, body) {
+    if (body) {
+      console.log(JSON.parse(body));
+    };
+    if (error) {
+      console.log('error!');
+      console.log(error);
+    };
+    console.log(JSON.stringify(response));
+  });
 });
 
 intents.onDefault(function (session) {

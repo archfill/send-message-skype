@@ -25,5 +25,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/lanz0107/send-message-skype.git"
+  },
+  "engines": {
+    "node": "6.11.3"
   }
 }

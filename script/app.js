@@ -139,6 +139,10 @@ intents.matches(/.*hey.*/i, function (session) {
     };
     console.log(JSON.stringify(response));
   });
+}).matches(/.*thank you.*/i, function(session) {
+  session.send('You are welcome. (like)');
+}).matches(/.*thanks.*/i, function (session) {
+  session.send('You are welcome. (like)');
 });
 
 intents.onDefault(function (session) {

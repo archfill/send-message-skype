@@ -146,6 +146,7 @@ function getWeatherData(session, city) {
       var result = {};
       request(url, function (error, response, body) {
         if (body) {
+          console.log(body);
           var parseBody = JSON.parse(body);
           var weathermain = parseBody.weather[0].description;
           var temp = (parseBody.main.temp - baseCelsius);

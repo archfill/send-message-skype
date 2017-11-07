@@ -100,6 +100,8 @@ intents.matches(/.*hey.*/i, function (session) {
       } else {
         session.send(sendMessage);
       };
+    } else if (resultIndex.length <= 0) {
+      session.send("I’m sorry, I don’t know. ;(");
     } else {
       getWeatherData(session, targetCity);
     };
